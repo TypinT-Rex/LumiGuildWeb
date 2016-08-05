@@ -15,16 +15,48 @@
 		<script src="script/slider.js"></script>
 		<script src="script/myScript.js"></script>
 	</head>
+	<style>
+		ul.breadcrumb {
+			padding: 0px 0px;
+    	list-style: none;
+    	background-color: transparent;;
+		}
+		.carousel-inner > .item > img,
+	  .carousel-inner > .item > a > img {
+	      width: 100%;
+	      margin: auto;
+	  }
+	</style>
 	<body>
 		<header>
+
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Sorry!</h4>
+						</div>
+						<div class="modal-body">
+							<p>Currently this page is unavailable.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
+
+				</div>
+			</div>
+
 			<div class="container">
 				<img src="media/images/LuminosityLogo.png">
 				<nav>
-					<ul>
-						<li><a href="index.html" id="index">Home</a></li>
+					<ul class="breadcrumb">
+						<li class="active"><a href="index.html" id="index">Home</a></li>
 						<li><a href="about.html" id="about">About</a></li>
 						<li><a href="roster.html" id="roster">Roster</a></li>
-						<li><a href="#" id="events">Events</a></li>
+						<li><a href="#" id="events" data-toggle="modal" data-target="#myModal">Events</a></li>
 						<li><a href="media.html" id="media">Media</a></li>
 						<li><a href="contact.html" id="contact">Contact</a></li>
 					</ul>
