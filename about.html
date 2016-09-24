@@ -16,20 +16,52 @@
 		<script src="script/myScript.js"></script>
 	</head>
 	<style>
-		ul.breadcrumb {
-			padding: 0px 0px;
-    	list-style: none;
-    	background-color: transparent;;
-		}
+	ul.breadcrumb {
+		margin: 0px 0px;
+		padding: 0px 0px;
+		list-style: none;
+		background-color: transparent;
+	}
+	ul.breadcrumb > li + li:before {
+		color: red;
+		content: "";
+		padding: 0px 0px;
+	}
 		.carousel-inner > .item > img,
 	  .carousel-inner > .item > a > img {
 	      width: 100%;
 	      margin: auto;
 	  }
+		div.navbanner {
+			background-color:white;
+			color:#fff;height:15%;
+			min-height:125px;
+			padding:0px 0px;
+			margin:0px 0px;
+		}
+		img.navbannerimg {
+			height:100%;
+			min-height:125px;
+			margin:0px 0px;
+			padding:0px 0px;
+		}
+		.affix {
+      top: 0px;
+      width: 100%;
+  	}
+		p.titletextbig {
+			font-size: 6vmax;
+			font-weight: bold;
+			color: white;
+		}
+		p.titletextsmall {
+			font-size: 2vmax;
+			color: white;
+		}
 	</style>
 	<body>
 		<header>
-
+			<!-- This is the event page error code -->
 			<div id="myModal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<!-- Modal content-->
@@ -48,32 +80,36 @@
 
 				</div>
 			</div>
-
-			<div class="container">
-				<img src="media/images/LuminosityLogo.png">
-				<nav>
-					<ul class="breadcrumb">
-						<li class="active"><a href="index.html" id="index">Home</a></li>
-						<li><a href="about.html" id="about">About</a></li>
-						<li><a href="roster.html" id="roster">Roster</a></li>
-						<li><a href="#" id="events" data-toggle="modal" data-target="#myModal">Events</a></li>
-						<li><a href="media.html" id="media">Media</a></li>
-						<li><a href="contact.html" id="contact">Contact</a></li>
-					</ul>
-				</nav>
+			<!-- ^ -->
+			<div data-spy="affix" style="z-index:11;"><!--z level of 11 required so the carousel captions don't overlay this-->
+				<div class="container-fluid navbanner">
+					<img class="img-responsive navbannerimg" src="media/images/LuminosityLogo.png">
+					<i id="menu" class="fa fa-bars"></i><!--mobile menu-->
+					<nav>
+						<ul class="breadcrumb">
+							<li class="active"><a href="index.html" id="index">Home</a></li>
+							<li><a href="about.html" id="about">About</a></li>
+							<li><a href="roster.html" id="roster">Roster</a></li>
+							<li><a href="#" id="events" data-toggle="modal" data-target="#myModal">Events</a></li>
+							<li><a href="media.html" id="media">Media</a></li>
+							<li><a href="contact.html" id="contact">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="container-fluid" style="background-color:red;color:#fff;height:15%;min-height:125px;padding:0px 0px;margin:0px 0px;">
+				<!--This is a temporary solution until I find a non-awful way to have the page start correctly spaced.-->
 			</div>
 		</header>
 
-		<div class="title-block">
-			<img class="title-bg" src="media/images/title-bg-img.jpg">
-				<div class="title-text">
-					<h1>The Guild</h1>
-					<h3>
+		<div class="container-fluid text-center" style="background-image:url(media/images/title-bg-img.jpg); background-size:cover;">
+					<p class="titletextbig">The Guild</p>
+					<hr width="50%">
+					<p class="titletextsmall">
 						We are the gods of a new world order. We are the soldiers, the legion of light.</br>
 						We are the center, the depth of the sun.</br>
 						Fire and flame, we are one.
-					</h3>
-				</div>
+					</p>
 		</div>
 
 		<div class="container">

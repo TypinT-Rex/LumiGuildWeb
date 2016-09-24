@@ -14,22 +14,79 @@
 		<link href="lib/mq.css" rel="stylesheet">
 		<script src="script/slider.js"></script>
 		<script src="script/myScript.js"></script>
+		<script src="script/TestingScript.js"></script>
+		<script>
+		//This needs to be replaced with an actual database pull of names and such
+		//The function probably will need to change too
+		var members = [
+			num1 = ["Name", "Characters", "Host Y/N", "Leave Y/N"],
+			num2 = ["Name2", "Characters", "Host Y/N", "Leave Y/N"],
+			num3 = ["Name3", "Characters", "Host Y/N", "Leave Y/N"],
+			num4 = ["Name4", "Characters", "Host Y/N", "Leave Y/N"]
+		];
+
+		function getMemberTable() {
+			var x ="", i;
+			var hold = "";
+			for (i=0; i<members.length; i++) {
+				x = x + "<tr>";
+				for(y=0; y<4;y++){
+					hold = members[i][y].toString();
+					x = x + "<td>"+hold+"</td>";
+				}
+				x = x + "</tr>";
+			}
+			document.getElementById("test").innerHTML = x;
+		}
+		</script>
 	</head>
 	<style>
 		ul.breadcrumb {
+			margin: 0px 0px;
 			padding: 0px 0px;
-    	list-style: none;
-    	background-color: transparent;;
+			list-style: none;
+			background-color: transparent;
+		}
+		ul.breadcrumb > li + li:before {
+			color: red;
+			content: "";
+			padding: 0px 0px;
 		}
 		.carousel-inner > .item > img,
 	  .carousel-inner > .item > a > img {
 	      width: 100%;
 	      margin: auto;
 	  }
+		div.navbanner {
+			background-color:white;
+			color:#fff;height:15%;
+			min-height:125px;
+			padding:0px 0px;
+			margin:0px 0px;
+		}
+		img.navbannerimg {
+			height:100%;
+			min-height:125px;
+			margin:0px 0px;
+			padding:0px 0px;
+		}
+		.affix {
+      top: 0px;
+      width: 100%;
+  	}
+		p.titletextbig {
+			font-size: 6vmax;
+			font-weight: bold;
+			color: white;
+		}
+		p.titletextsmall {
+			font-size: 3vmax;
+			color: white;
+		}
 	</style>
 	<body>
 		<header>
-
+			<!-- This is the event page error code -->
 			<div id="myModal" class="modal fade" role="dialog">
 				<div class="modal-dialog">
 					<!-- Modal content-->
@@ -48,40 +105,75 @@
 
 				</div>
 			</div>
-
-			<div class="container">
-				<img src="media/images/LuminosityLogo.png">
-				<nav>
-					<ul class="breadcrumb">
-						<li class="active"><a href="index.html" id="index">Home</a></li>
-						<li><a href="about.html" id="about">About</a></li>
-						<li><a href="roster.html" id="roster">Roster</a></li>
-						<li><a href="#" id="events" data-toggle="modal" data-target="#myModal">Events</a></li>
-						<li><a href="media.html" id="media">Media</a></li>
-						<li><a href="contact.html" id="contact">Contact</a></li>
-					</ul>
-				</nav>
-
+			<!-- ^ -->
+			<div data-spy="affix" style="z-index:11;"><!--z level of 11 required so the carousel captions don't overlay this-->
+				<div class="container-fluid navbanner">
+					<img class="img-responsive navbannerimg" src="media/images/LuminosityLogo.png">
+					<i id="menu" class="fa fa-bars"></i><!--mobile menu-->
+					<nav>
+						<ul class="breadcrumb">
+							<li class="active"><a href="index.html" id="index">Home</a></li>
+							<li><a href="about.html" id="about">About</a></li>
+							<li><a href="roster.html" id="roster">Roster</a></li>
+							<li><a href="#" id="events" data-toggle="modal" data-target="#myModal">Events</a></li>
+							<li><a href="media.html" id="media">Media</a></li>
+							<li><a href="contact.html" id="contact">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="container-fluid" style="background-color:red;color:#fff;height:15%;min-height:125px;padding:0px 0px;margin:0px 0px;">
+				<!--This is a temporary solution until I find a non-awful way to have the page start correctly spaced.-->
 			</div>
 		</header>
 
-		<div class="title-block">
-			<img class="title-bg" src="media/images/title-bg-img.jpg">
-				<div class="title-text">
-					<h1>Our minions</h1>
-					<h3>
-						Mini's loyal subjects
-					</h3>
-				</div>
+		<div class="container-fluid text-center" style="background-image:url(media/images/title-bg-img.jpg); background-size:cover;">
+					<p class="titletextbig">Our minions</p>
+					<hr width="50%">
+					<p class="titletextsmall">Mini's loyal subjects</p>
 		</div>
 
 		<div class="container">
-			<h5><b>*Mains are in bold text*</b></h5>
+			<div class="table-responsive">
+				<script>var row = 0;</script>
+			  <table class="table">
+			    <thead>
+			      <tr>
+			        <th>Player Name</th>
+			        <th>Character Name(s)</th>
+			        <th>Host</th>
+			        <th>On Leave</th>
+			      </tr>
+			    </thead>
+					<tbody id = test>
+						<script>getMemberTable();</script>
+					</tbody>
+			  </table>
+		  </div>
+			<!--<h5><b>*Mains are in bold text*</b></h5>
 			<div class="media-title">
 				<h4>Administrators</h4>
 			</div>
+			<script>var row = 0;</script>
+			<div class="container">
+				<ul>
+					<li>
+						<script>document.write("Player Name : " + members[row][0]); row++;</script>
+						<li>
+							<script>document.write("Character Name(s) : " + members[row][1]); row++;</script>
+						</li>
+					</li>
+					<li><script>document.write("Player Name : " + members[row][0]); row++;</script></li>
+					<li><script>document.write("Player Name : " + members[row][0]); row++;</script></li>
+					<li><script>document.write("Player Name : " + members[row][0]);</script></li>-->
+					<!--<script>
+						for(i = 0; i < members.length; i++){
+							document.write("Player Name : " + members[i][0] + " Character(s) Name(s) : " + members[i][1] + " Host : " + members[i][2] + " On Leave : " + members[i][3] + "<br>");
+						}
+					</script>-->
+			</div>
 
-			<div class="roster">
+			<!--<div class="roster">
 
 				<div class="roster-title nickname">
 					<p>Nickname</p>
@@ -231,13 +323,13 @@
 				<div class="roster-element leave">
 					<img src="media/images/no.png">
 				</div>
-			</div>
+			</div>-->
 
 			<div class="media-title">
 				<h4>Members</h4>
 			</div>
 
-			<div class="roster">
+			<!--<div class="roster">
 				<div class="roster-title nickname">
 					<p>Nickname</p>
 				</div>
@@ -289,7 +381,7 @@
 					<img src="media/images/no.png">
 				</div>
 			</div>
-		</div>
+		</div>-->
 
 		<footer>
 			<div class="container">

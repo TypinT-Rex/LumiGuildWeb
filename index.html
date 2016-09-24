@@ -16,15 +16,54 @@
 		<script src="script/myScript.js"></script>
 	</head>
 	<style>
+		/*@media (min-width: 769) {
+			.nav-collapse.collapse {
+					height: auto !important;
+					overflow: visible !important;
+			}
+		}
+		This is the closest I could think of to make it not break, but it still don't work*/
 		ul.breadcrumb {
+			margin: 0px 0px;
 			padding: 0px 0px;
     	list-style: none;
-    	background-color: transparent;;
+    	background-color: transparent;
+		}
+		ul.breadcrumb > li + li:before {
+	    color: red;
+	    content: "";
+	    padding: 0px 0px;
+		}
+	 	ul.frontpage {
+			padding: 0px 0px;
+    	list-style: none;
+    	background-color: transparent;
+		}
+		ul.frontpage > li + li:before {
+	    color: red;
+	    content: "";
+	    padding: 0px 0px;
+		}
+		ul.frontpage > li {
+			margin-left: 10%;
+		}
+		div.navbanner {
+			background-color:white;
+			color:#fff;height:15%;
+			min-height:125px;
+			padding:0px 0px;
+			margin:0px 0px;
+		}
+		img.navbannerimg {
+			height:100%;
+			min-height:125px;
+			margin:0px 0px;
+			padding:0px 0px;
 		}
 		.carousel-inner > .item > img,
 	  .carousel-inner > .item > a > img {
 	      width:100%;
-	      margin:0 auto;
+	      margin:0px auto;
 	  }
 		.carousel-control {
 			background:none;
@@ -34,42 +73,52 @@
 			position:absolute;
 			top:0%;"
 		}
+		.affix {
+      top: 0px;
+      width: 100%;
+  	}
 	</style>
 	<body>
 		<header>
-			<div class="container">
-				<img src="media/images/LuminosityLogo.png">
-				<i id="menu" class="fa fa-bars"></i>
+			<!-- This is the event page error code -->
+			<div id="myModal" class="modal fade" role="dialog">
+				<div class="modal-dialog">
+					<!-- Modal content-->
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal">&times;</button>
+							<h4 class="modal-title">Sorry!</h4>
+						</div>
+						<div class="modal-body">
+							<p>Currently this page is unavailable.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						</div>
+					</div>
 
-				<div id="myModal" class="modal fade" role="dialog">
-				  <div class="modal-dialog">
-				    <!-- Modal content-->
-				    <div class="modal-content">
-				      <div class="modal-header">
-				        <button type="button" class="close" data-dismiss="modal">&times;</button>
-				        <h4 class="modal-title">Sorry!</h4>
-				      </div>
-				      <div class="modal-body">
-				        <p>Currently this page is unavailable.</p>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				      </div>
-				    </div>
-
-				  </div>
 				</div>
+			</div>
+			<!-- ^ -->
+			<div data-spy="affix" style="z-index:11;"><!--z level of 11 required so the carousel captions don't overlay this-->
+				<div class="container-fluid navbanner">
+					<img class="img-responsive navbannerimg" src="media/images/LuminosityLogo.png">
+					<i id="menu" class="fa fa-bars" style="color:black;"></i><!--mobile menu-->
 
-				<nav>
-					<ul class="breadcrumb">
-						<li class="active"><a href="index.html" id="index">Home</a></li>
-						<li><a href="about.html" id="about">About</a></li>
-						<li><a href="roster.html" id="roster">Roster</a></li>
-						<li><a href="#" id="events" data-toggle="modal" data-target="#myModal">Events</a></li>
-						<li><a href="media.html" id="media">Media</a></li>
-						<li><a href="contact.html" id="contact">Contact</a></li>
-					</ul>
-				</nav>
+					<nav>
+						<ul class="breadcrumb">
+							<li class="active"><a href="index.html" id="index">Home</a></li>
+							<li><a href="about.html" id="about">About</a></li>
+							<li><a href="roster.html" id="roster">Roster</a></li>
+							<li><a href="#" id="events" data-toggle="modal" data-target="#myModal">Events</a></li>
+							<li><a href="media.html" id="media">Media</a></li>
+							<li><a href="contact.html" id="contact">Contact</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+			<div class="container-fluid" style="background-color:red;color:#fff;height:15%;min-height:125px;padding:0px 0px;margin:0px 0px;">
+				<!--This is a temporary solution until I find a non-awful way to have the page start correctly spaced.-->
 			</div>
 		</header>
 
@@ -80,7 +129,7 @@
 		</div>-->
 
 	<div class="container-fluid">
-	  <div id="frontBanner" class="carousel" data-ride="carousel"> <!--for some reason making a slide effect makes the images move down, THEN slide. I have no idea, it looks awful, so I removed it til I figure out why -->
+	  <div id="frontBanner" class="carousel slide" data-ride="carousel"> <!--for some reason making a slide effect makes the images move down, THEN slide. I have no idea, it looks awful, so I removed it til I figure out why -->
 	    <!-- Indicators -->
 	    <ol class="carousel-indicators">
 	      <li data-target="#frontBanner" data-slide-to="0" class="active"></li>
@@ -98,8 +147,8 @@
 		      </div>
 	      </div>
 
-	      <div class="item">
-	        <img class="img-responsive" src="media/images/Slide2.png" alt="Second">
+	      <div class="item" style="background-image:url(media/images/Slide2.png)">
+	        <img class="img-responsive" src="media/images/Slide2.png" alt="Second" style="opacity:0.0">
 					<div class="carousel-caption">
 		        <h3>HELLO</h3>
 		        <p>I AM A HUMAN JOIN THIS HU-MAN UNION</p>
@@ -133,7 +182,7 @@
 				"Reading Comprehension Skill over Junior High level required."
 			</p>
 
-			<ul class="breadcrumb"><!--I need to figure out how to pad these to be less awful-->
+			<ul class="breadcrumb frontpage"><!--I need to figure out how to pad these to be less awful-->
 				<li class="active">
 					<a href="about.html" id="aboutPage">
 						<div class="cta-block">
